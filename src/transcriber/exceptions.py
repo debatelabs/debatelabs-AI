@@ -1,0 +1,2 @@
+class InvalidAudioType(Exception):
+    pass
