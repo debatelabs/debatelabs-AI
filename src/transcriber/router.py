@@ -1,5 +1,5 @@
 from fastapi import UploadFile, APIRouter, File
-from src.transcriber.schemas import Transcription
+from fastapi.responses import JSONResponse
 from src.transcriber.dependancies import TranscriberServiceDep
 
 
@@ -8,11 +8,11 @@ router = APIRouter()
 
 @router.post("/transcribe")
 async def transcribe(
-    transcriber: TranscriberServiceDep, file: UploadFile = File(...), 
-    ) -> Transcription:
+    transcriber: TranscriberServiceDep,
+    file: UploadFile = File(...),
+) -> JSONResponse:
     """
     Transcribe the audio file.
     """
     transcription = await transcriber.transcribe(file)
-    return Transcription(text=transcription)
-    
+    return JSONResponse(content=transcription, status_code=200)

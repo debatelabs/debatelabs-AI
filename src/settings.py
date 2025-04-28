@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from pathlib import Path
+
 
 class Settings(BaseSettings):
     """
@@ -7,9 +7,7 @@ class Settings(BaseSettings):
     """
 
     # General settings
-    OPEN_AI_API_KEY: str 
-
-    TEMP_PATH: Path = Path("src/temp")
+    OPEN_AI_API_KEY: str
 
 
 settings = Settings()
